@@ -4,7 +4,7 @@ import Movie from './Movie'
 
 class Movies extends Component {
 	state = {
-		movies: null,
+		movies: this.props.movies,
 		isLoading: false
 	}
 
@@ -13,22 +13,24 @@ class Movies extends Component {
 			isLoading: true
 		})
 
-		getPopularMovies().then(
-			movies => {
-				this.setState({
-					movies,
-					isLoading: false
-				})
-			},
-			error => {
-				alert('Error', `Error fetching movies: ${error}`)
-			}
-		)
+		// getPopularMovies().then(
+		// 	movies => {
+		// 		this.setState({
+		// 			movies,
+		// 			isLoading: false
+		// 		})
+		// 	},
+		// 	error => {
+		// 		alert('Error', `Error fetching movies: ${error}`)
+		// 	}
+		// )
 	}
 
 	render() {
 		const { isLoading, movies } = this.state
-		
+
+		console.log(movies)
+		console.log(this.props)
 		return (
 			<div>
 				{isLoading ? "Loading.." : <Movie movies={movies} />}

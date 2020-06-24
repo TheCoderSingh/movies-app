@@ -139,8 +139,8 @@ export const getUpcomingTvShows = async () => {
 			}
 		})
 
-		const movies = response.data.results
-		return movies
+		const results = response.data.results
+		return results
 	} catch (error) {
 		throw error
 	}
@@ -148,6 +148,44 @@ export const getUpcomingTvShows = async () => {
 
 export const getMultiSearchResults = async searchQuery => {
 	const url = BASE_URL + 'search/multi'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US',
+				query: searchQuery
+			}
+		})
+
+		const results = response.data.results
+		return results
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getMovieSearchResults = async searchQuery => {
+	const url = BASE_URL + 'search/movie'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US',
+				query: searchQuery
+			}
+		})
+
+		const results = response.data.results
+		return results
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getTvSearchResults = async searchQuery => {
+	const url = BASE_URL + 'search/tv'
 
 	try {
 		const response = await axios.get(url, {

@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import Select from '@material-ui/core/Select';
 import { FormControl, InputLabel, MenuItem } from '@material-ui/core';
 import Movies from '../movies/Movies';
+import { getPopularMovies, getNowPlayingMovies } from '../../services/api';
 
 class Categories extends Component {
 	state = {
-		value: 1
+		value: 1,
+		movies: null
 	}
 
 	render() {
@@ -14,7 +16,32 @@ class Categories extends Component {
 				value: event.target.value
 			})
 
-			return <Movies value={event.target.value} />
+			switch(this.state.value) {
+				case 0:
+					getNowPlayingMovies().then(
+						movies => {
+							this.setState({
+								movies,
+							})
+						},
+						error => {
+							alert('Error', `Error fetching movies: ${error}`)
+						}
+					)
+				case 1:
+					getPopularMovies().then(
+						movies => {
+							this.setState({
+								movies,
+							})
+						},
+						error => {
+							alert('Error', `Error fetching movies: ${error}`)
+						}
+					)
+			}
+
+			return <Movies movies={this.state.movies} />
 		}
 
 		return (
