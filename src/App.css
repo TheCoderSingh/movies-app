@@ -1,3 +1,7 @@
 .App-title {
   text-align: center;
 }
+
+.MuiGrid-root {
+  width: 100%;
+}

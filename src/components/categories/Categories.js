@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import Select from '@material-ui/core/Select';
-import { makeStyles } from '@material-ui/core/styles'
 import { FormControl, InputLabel, MenuItem } from '@material-ui/core';
+import Movies from '../movies/Movies';
 
 class Categories extends Component {
 	state = {
 		value: 1
 	}
 
-	render() {			
+	render() {
 		const handleChange = (event) => {
 			this.setState({
 				value: event.target.value
 			})
-		};
+
+			return <Movies value={event.target.value} />
+		}
 
 		return (
 			<FormControl>
@@ -29,7 +31,7 @@ class Categories extends Component {
 						<MenuItem value={2}>top_rated</MenuItem>
 						<MenuItem value={3}>upcoming</MenuItem>
 					</Select>
-			</FormControl>
+			</FormControl>			
 		)
 	}
 }

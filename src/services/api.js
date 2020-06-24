@@ -19,3 +19,148 @@ export const getPopularMovies = async () => {
 		throw error
 	}
 }
+
+export const getNowPlayingMovies = async () => {
+	const url = BASE_URL + 'movie/now_playing'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US'
+			}
+		})
+
+		const movies = response.data.results
+		return movies
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getTopRatedMovies = async () => {
+	const url = BASE_URL + 'movie/top_rated'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US'
+			}
+		})
+
+		const movies = response.data.results
+		return movies
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getUpcomingMovies = async () => {
+	const url = BASE_URL + 'movie/upcoming'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US'
+			}
+		})
+
+		const movies = response.data.results
+		return movies
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getPopularTvShows = async () => {
+	const url = BASE_URL + 'tv/popular'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US'
+			}
+		})
+
+		const shows = response.data.results
+		return shows
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getNowPlayingTvShows = async () => {
+	const url = BASE_URL + 'tv/now_playing'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US'
+			}
+		})
+
+		const movies = response.data.results
+		return movies
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getTopRatedTvShows = async () => {
+	const url = BASE_URL + 'tv/top_rated'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US'
+			}
+		})
+
+		const movies = response.data.results
+		return movies
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getUpcomingTvShows = async () => {
+	const url = BASE_URL + 'tv/upcoming'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US'
+			}
+		})
+
+		const movies = response.data.results
+		return movies
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getMultiSearchResults = async searchQuery => {
+	const url = BASE_URL + 'search/multi'
+
+	try {
+		const response = await axios.get(url, {
+			params: {
+				api_key: API_KEY,
+				language: 'en-US',
+				query: searchQuery
+			}
+		})
+
+		const results = response.data.results
+		return results
+	} catch (error) {
+		throw error
+	}
+}

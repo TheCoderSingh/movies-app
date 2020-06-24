@@ -12,6 +12,7 @@ const getStyles = makeStyles(theme => ({
 		margin: '1.2em',
 		borderRadius: 0,
 		textAlign: 'center',
+		width: '100%'
 	},
 	overview: {
 		textAlign: 'left'
@@ -28,10 +29,10 @@ const getStyles = makeStyles(theme => ({
 	}
 }))
 
-const MovieCard = props => {
+const ShowCard = props => {
 	const classes = getStyles()
 
-	const {title, image, popularity, overview, release_date} = props
+	const {name, image, popularity, overview, first_air_date} = props
 	
 	return (
 		<Grid className={classes.card}>
@@ -40,7 +41,7 @@ const MovieCard = props => {
 					<CardMedia image={image} item='true' className={classes.media} />
 				</Grid>
 				<Grid item xs={9} className={classes.info}>
-					<CardHeader title={title} subheader={`Release Date: ${release_date} | Popularity: ${popularity}`} />
+					<CardHeader title={name} subheader={`First Air Date: ${first_air_date} | Popularity: ${popularity}`} />
 					<CardContent>
 						<Typography variant="body2" color="textSecondary" className={classes.overview}>
 							{overview}
@@ -52,4 +53,4 @@ const MovieCard = props => {
 	)
 }
 
-export default MovieCard
+export default ShowCard

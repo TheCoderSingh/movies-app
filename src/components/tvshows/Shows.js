@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { getPopularMovies } from '../../services/api'
-import Movie from './Movie'
+import { getPopularTvShows } from '../../services/api'
+import Show from './Show'
 
-class Movies extends Component {
+class Shows extends Component {
 	state = {
-		movies: null,
+		shows: null,
 		isLoading: false
 	}
 
@@ -13,10 +13,10 @@ class Movies extends Component {
 			isLoading: true
 		})
 
-		getPopularMovies().then(
-			movies => {
+		getPopularTvShows().then(
+			shows => {
 				this.setState({
-					movies,
+					shows,
 					isLoading: false
 				})
 			},
@@ -27,14 +27,14 @@ class Movies extends Component {
 	}
 
 	render() {
-		const { isLoading, movies } = this.state
+		const { isLoading, shows } = this.state
 		
 		return (
 			<div>
-				{isLoading ? "Loading.." : <Movie movies={movies} />}
+				{isLoading ? "Loading.." : <Show shows={shows} />}
 			</div>
 		)
 	}
 }
 
-export default Movies;
+export default Shows
