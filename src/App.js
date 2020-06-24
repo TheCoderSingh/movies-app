@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Container from './components/layout/Container';
-import Movies from './components/movies/Movies';
 import Search from './components/search/Search';
 
 function App() {

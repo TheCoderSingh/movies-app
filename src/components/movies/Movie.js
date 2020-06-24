@@ -5,7 +5,8 @@ import MovieCard from './MovieCard'
 
 const getStyles = makeStyles(theme => ({
 	root: {
-		margin: '5em 0'
+		margin: '5em 0',
+		border: '1px solid'
 	}
 }))
 

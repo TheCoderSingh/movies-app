@@ -11,7 +11,7 @@ const getStyles = makeStyles(theme => ({
 	card: {
 		margin: '1.2em',
 		borderRadius: 0,
-		textAlign: 'center',
+		textAlign: 'center'
 	},
 	overview: {
 		textAlign: 'left'
