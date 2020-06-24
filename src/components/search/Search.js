@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { TextField, Select, FormControl, InputLabel, Button } from '@material-ui/core'
+import { TextField, Select, FormControl, InputLabel, Button, MenuItem } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import { getMultiSearchResults } from '../../services/api'
-import Movies from '../movies/Movies'
+import { getMultiSearchResults, getMovieSearchResults, getTvSearchResults } from '../../services/api'
 
 const getStyles = theme => ({
 	root: {
@@ -10,7 +9,7 @@ const getStyles = theme => ({
 		textAlign: 'center'
 	},
 	formControl: {
-		minWidth: 120,
+		minWidth: 150,
 	},
 	search: {
 		width: '45%',
@@ -27,7 +26,8 @@ const getStyles = theme => ({
 class Search extends Component {
 	state = {
 		searchQuery: '',
-		data: null
+		data: null,
+		option: 0
 	}
 
 	render() {
@@ -40,41 +40,74 @@ class Search extends Component {
 			})
 		}
 
+		const handleChange = (e) => {
+			this.setState({
+				option: e.target.value
+			})
+		}
+
 		const getData = e => {
 			e.preventDefault()
 
-			getMultiSearchResults(this.state.searchQuery).then(
-				data => {
-					this.setState({
-						data
-					})
-					return (<Movies movies={data} />)
-				},
-				error => {
-					alert('Error', `Something went wrong: ${error}`)
-				}
-			)
+			switch (this.state.option) {
+				case 0:
+					getMultiSearchResults(this.state.searchQuery).then(
+						data => {
+							this.setState({
+								data
+							})
+							console.log(data)
+						},
+						error => {
+							alert('Error', `Something went wrong: ${error}`)
+						}
+					)
+					break
+				case 1:
+					getMovieSearchResults(this.state.searchQuery).then(
+						data => {
+							this.setState({
+								data
+							})
+							console.log(data)
+						},
+						error => {
+							alert('Error', `Something went wrong: ${error}`)
+						}
+					)
+					break
+				case 2:
+					getTvSearchResults(this.state.searchQuery).then(
+						data => {
+							this.setState({
+								data
+							})
+							console.log(data)
+						},
+						error => {
+							alert('Error', `Something went wrong: ${error}`)
+						}
+					)
+					break
+				default:
+					break
+			}
 		}
 
 		return (
 			<form className={classes.root} onSubmit={getData}>
 				<TextField className={classes.search} label="Search" variant="outlined" onChange={handleInputChange}/>
 				<FormControl variant="outlined" className={classes.formControl}>
-					<InputLabel htmlFor="outlined-age-native-simple">Search Type</InputLabel>
-					<Select
-						native
-						value={0}
-						// onChange={handleChange}
-						label="Search Type"
-						inputProps={{
-							name: 'Search Type',
-						}}
-					>
-						<option value={0}>multi</option>
-						<option value={1}>movie</option>
-						<option value={2}>tv</option>
-					</Select>
-				</FormControl>
+						<InputLabel>Search Type</InputLabel>
+							<Select
+								value={this.state.option}
+								onChange={handleChange}
+							>
+								<MenuItem value={0}>multi</MenuItem>
+								<MenuItem value={1}>movie</MenuItem>
+								<MenuItem value={2}>tv</MenuItem>
+							</Select>
+					</FormControl>
 				<Button type='submit' variant='outlined' className={classes.button}>Search</Button>
 			</form>	
 		)
